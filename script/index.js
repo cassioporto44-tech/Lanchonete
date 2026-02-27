@@ -156,7 +156,7 @@ const menuItems = [
   },
   {
     id: 23,
-    name: "Guaraná Zer",
+    name: "Guaraná Zero",
     price: 14.9,
     category: "Bebidas",
     image: "./img/menu/23_guarana_zero.png",
@@ -309,7 +309,7 @@ function carregarCarrinho() {
                         <button type="button" class="btn btn-outline-danger btn-sm remove-item-btn" data-id="${
                           item.id
                         }" onclick=removerItem(${item.id})>
-                            <img class="remove-img" src="/img/trash.png">
+                            <img class="remove-img" src="./img/trash.png">
                         </button>
                     </div>
                 </li>
