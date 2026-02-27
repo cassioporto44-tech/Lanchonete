@@ -149,8 +149,8 @@ const menuItems = [
   },
   {
     id: 22,
-    name: "Guaraná",
-    price: 14.9,
+    name: "Coca-Cola",
+    price: 4.99,
     category: "Bebidas",
     image: "./img/menu/22_guarana.png",
   },
