@@ -171,7 +171,7 @@ const menuItems = [
 ];
 
 let carrinho = JSON.parse(localStorage.getItem("lanchoneteCarrinho")) || [];
-
+let nomeClienteAtual = "";
 let categoriaAtual = "Todos";
 
 const menuContainer = document.getElementById("menu-items");
@@ -388,40 +388,61 @@ function gerarSenhaPedido() {
   return Math.floor(Math.random() * (100 - 60 + 1)) + 60;
 }
 
-function completarPedido(nomeCliente) {
+  function completarPedido(nomeCliente) {
+  nomeClienteAtual = nomeCliente; // salva o nome
+  document.getElementById("pixModal").style.display = "flex";
+}
+function copiarPix() {
+  const pixInput = document.getElementById("pixKey");
+
+  navigator.clipboard.writeText(pixInput.value)
+    .then(() => {
+      alert("Chave PIX copiada! Você será direcionado para o WhatsApp.");
+      abrirWhatsApp();
+    });
+}
+function fecharPix() {
+  document.getElementById("pixModal").style.display = "none";
+}
+
+function abrirWhatsApp() {
   if (carrinho.length === 0) return;
-  
+
   const senha = gerarSenhaPedido();
-  
+
   let mensagem = `🍔 *Novo Pedido* \n\n`;
-  mensagem += `👤 Cliente: ${nomeCliente}\n`;
+  mensagem += `👤 Cliente: ${nomeClienteAtual}\n`;
   mensagem += `🎟️ Senha: ${senha}\n\n`;
-  
+
   let total = 0;
-  
+
   carrinho.forEach((item) => {
     const subtotal = item.price * item.quantity;
     total += subtotal;
-    
+
     mensagem += `• ${item.name}\n`;
     mensagem += `   ${item.quantity}x - R$ ${subtotal.toFixed(2)}\n\n`;
   });
-  
+
   mensagem += `💰 *Total: R$ ${total.toFixed(2)}*`;
-  
-  const numero = "5599984591017"; // 🔴 TROQUE AQUI
-  
+
+  const numero = "5599984591017";
+
   const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-  
-  carrinho = [];
-  saveCarrinho();
-  salvarNomeCliente(nomeCliente);
-  carregarCarrinho();
-  
-  confirmaPedidoModal.hide();
-  offcanvas.hide();
-  
+
   window.open(url, "_blank");
+
+// 🔥 salva o nome para próxima compra
+salvarNomeCliente(nomeClienteAtual);
+
+// 🔥 zera carrinho
+carrinho = [];
+saveCarrinho();
+carregarCarrinho();
+
+document.getElementById("pixModal").style.display = "none";
+confirmaPedidoModal.hide();
+offcanvas.hide();
 }
 
 function limparCarrinho() {

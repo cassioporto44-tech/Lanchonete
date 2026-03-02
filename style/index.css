@@ -289,3 +289,50 @@ footer p {
     font-size: 1.25rem;
   }
 }
+
+
+.pix-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.pix-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+}
+
+.pix-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.pix-content button {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pix-content button1 {
+  background: #D32525;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
